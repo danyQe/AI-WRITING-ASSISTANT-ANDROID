@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Writing Assistant" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Enter your prompt:" class="text-lg mb-2" />
+            <TextView 
+                hint="Type your prompt here..."
+                text="{{ prompt }}"
+                class="input p-2 mb-4 border rounded"
+                height="100"
+            />
+            
+            <Button 
+                text="{{ isLoading ? 'Generating...' : 'Generate Text' }}"
+                tap="{{ generateText }}"
+                class="btn btn-primary mb-4"
+                isEnabled="{{ !isLoading }}"
+            />
+            
+            <StackLayout visibility="{{ generatedText ? 'visible' : 'collapsed' }}" class="mb-4">
+                <GridLayout columns="*, auto" class="mb-2">
+                    <Label text="Generated Text:" class="text-lg" col="0" />
+                    <Button 
+                        text="Copy" 
+                        tap="{{ copyToClipboard }}"
+                        class="btn btn-outline"
+                        col="1"
+                    />
+                </GridLayout>
+                
+                <Label 
+                    text="{{ generatedText }}"
+                    textWrap="true"
+                    class="p-2 border rounded"
+                />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
